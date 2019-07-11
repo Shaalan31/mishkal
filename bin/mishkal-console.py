@@ -22,26 +22,26 @@ scriptversion = '0.1'
 AuthorName = "Taha Zerrouki"
 def usage():
 # "Display usage options"
-    print "(C) CopyLeft 2012, %s" % AuthorName
-    print "Usage: %s -f filename [OPTIONS]" % scriptname
-    print (u"       %s 'السلام عليكم' [OPTIONS]\n" % scriptname).encode('utf8')
+    print ("(C) CopyLeft 2012, %s" % AuthorName)
+    print ("Usage: %s -f filename [OPTIONS]" % scriptname)
+    print (u"       %s 'السلام عليكم' [OPTIONS]\n" % scriptname.encode('utf8'))
 #"Display usage options"
-    print "\t[-f | --file = filename]input file to %s" % scriptname
-    print "\t[-h | --help]     outputs this usage message"
-    print "\t[-v | --version]  program version"
-    print "\t[-p | --progress]  display progress status"
-    print "\n\t* Tashkeel Actions\n\t-------------------"
-    print "\t[-r | --reduced]  Reduced Tashkeel."    
-    print "\t[-s | --strip]    Strip tashkeel (remove harakat)."
-    print "\t[-c | --compare]  compare the vocalized text with the program output"
-    print "\n\t* Tashkeel Options\n\t------------------"
-    print "\t[-l | --limit]    vocalize only a limited number of line"
-    print "\t[-x | --syntax]   disable syntaxic analysis"
-    print "\t[-m | --semantic] disable semantic analysis"
-    print "\t[-g | --train]     enable tranining option"
-    print "\t[-i | --ignore]   ignore the last Mark on output words."    
-    print "\t[-t | --stat]     disable statistic tashkeel"
-    print "\r\nThis program is licensed under the GPL License\n"
+    print ("\t[-f | --file = filename]input file to %s" % scriptname)
+    print ("\t[-h | --help]     outputs this usage message")
+    print ("\t[-v | --version]  program version")
+    print ("\t[-p | --progress]  display progress status")
+    print ("\n\t* Tashkeel Actions\n\t-------------------")
+    print ("\t[-r | --reduced]  Reduced Tashkeel.")
+    print ("\t[-s | --strip]    Strip tashkeel (remove harakat).")
+    print ("\t[-c | --compare]  compare the vocalized text with the program output")
+    print ("\n\t* Tashkeel Options\n\t------------------")
+    print ("\t[-l | --limit]    vocalize only a limited number of line")
+    print ("\t[-x | --syntax]   disable syntaxic analysis")
+    print ("\t[-m | --semantic] disable semantic analysis")
+    print ("\t[-g | --train]     enable tranining option")
+    print ("\t[-i | --ignore]   ignore the last Mark on output words.")
+    print ("\t[-t | --stat]     disable statistic tashkeel")
+    print ("\r\nThis program is licensed under the GPL License\n")
 
 def grabargs():
 #  "Grab command-line arguments"
@@ -76,7 +76,7 @@ def grabargs():
             usage()
             sys.exit(0)
         if o in ("-V", "--version"):
-            print scriptversion
+            print (scriptversion)
             sys.exit(0)
         if o in ("-x", "--syntax"):
             options["disableSyntax"] = True
@@ -140,7 +140,7 @@ def test():
         try:
             myfile = open(filename)
         except:
-            print " Can't Open the given File ", filename
+            print (" Can't Open the given File ", filename)
             sys.exit()
     else:
         lines = text.split('\n')
@@ -186,7 +186,7 @@ def test():
     percent = 0
     if compare:
         #dispaly stats for the current line
-        print "id\tfully Correct\tStrip Correct\tfully WER\tStrip WER\tLER\tTotal\tline Fully correct\tline Strip correct\tLine"
+        print ("id\tfully Correct\tStrip Correct\tfully WER\tStrip WER\tLER\tTotal\tline Fully correct\tline Strip correct\tLine")
         
     while line and (nolimit or counter <= limit):
         if not line.startswith('#'):
@@ -216,10 +216,10 @@ def test():
                     total += len(inputlist)
                     lineTotal = len(inputlist)
                     if len(inputlist) != len(outputlist):
-                        print "lists haven't the same length"
-                        print len(inputlist), len(outputlist)
-                        print u"#".join(inputlist).encode('utf8')
-                        print u"#".join(outputlist).encode('utf8')
+                        print ("lists haven't the same length")
+                        print (len(inputlist), len(outputlist))
+                        print (u"#".join(inputlist).encode('utf8'))
+                        print (u"#".join(outputlist).encode('utf8'))
                     else:
                         for inword, outword, outsemiword in zip(inputlist, outputlist, outputlistsemi):
                             simi = araby.vocalized_similarity(inword, outword)
@@ -243,7 +243,7 @@ def test():
 
             #display stat for every line
             if compare:
-                print "%d\t%0.2f%%\t%0.2f%%\t%d\t%d\t%d\t%d\t"%(
+                print ("%d\t%0.2f%%\t%0.2f%%\t%d\t%d\t%d\t%d\t"%(
                         counter-1, #id
                         round(correct*100.00/total, 2), #fully Correct
                         round((total-WLMIncorrect)*100.00/total, 2), #Strip Correct
@@ -251,16 +251,16 @@ def test():
                         WLMIncorrect, #Strip WER
                         LettersError, #LER
                         total, #Total
-                        ), 
+                        )),
                 if lineTotal:
-                    print "%0.2f%%\t"%round(lineCorrect*100.00/lineTotal, 2), #line Fully correct
-                    print "%0.2f%%\t"%round((lineTotal-lineWLMIncorrect)*100.00/lineTotal, 2), #line Strip correct
+                    print ("%0.2f%%\t"%round(lineCorrect*100.00/lineTotal, 2)), #line Fully correct
+                    print ("%0.2f%%\t"%round((lineTotal-lineWLMIncorrect)*100.00/lineTotal, 2)), #line Strip correct
                         
             #~ print result.strip('\n').encode('utf8'),
             if text:
-                print result.strip('\n').encode('utf8'),
+                print (result.strip('\n').encode('utf8')),
             else:
-                print result.encode('utf8')
+                print (result.encode('utf8'))
                                 
         if progress and not nolimit:
             #~percent = (counter * 100/ limit ) if (counter / limit * 100 >percent) else percent

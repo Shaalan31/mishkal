@@ -1,0 +1,6 @@
+README.md
+setup.py
+SalamScout_Softwares.egg-info/PKG-INFO
+SalamScout_Softwares.egg-info/SOURCES.txt
+SalamScout_Softwares.egg-info/dependency_links.txt
+SalamScout_Softwares.egg-info/top_level.txt

@@ -1,7 +1,6 @@
 #! /usr/bin/python
 from distutils.core import setup
 from glob import glob
-import py2exe
 
 # to install type:
 # python setup.py install --root=/
